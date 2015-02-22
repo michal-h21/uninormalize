@@ -15,6 +15,7 @@ function md5sum(any) return md5.hex(md5.sum(any)) end
 -- Rehash the character data
 unicharacters.combinee = { }
 unicharacters.context = unicharacters.context or { }
+local charu = unicode.utf8.char
 
 function unicharacters.context.rehash2()
   for k, udata in pairs(unidata) -- *not* ipairs :-)
