@@ -9,6 +9,16 @@ local byte = unicode.utf8.byte
 local unidata = characters.data
 local length = unicode.utf8.len
 
+M.debug = false
+
+-- for some reason variable number of arguments doesn't work
+local function debug_msg(a,b,c,d,e,f,g,h,i)
+  if M.debug then
+    local t = {a,b,c,d,e,f,g,h,i}
+    print("[uninormalize]", unpack(t))
+  end
+end
+
 local function make_hash (t) 
   local y = {}
   for _,v in ipairs(t) do 
@@ -26,16 +36,22 @@ local function printchars(s)
 	for x in gmatch(s,".") do
 		t[#t+1] = name(byte(x))
 	end
-	print(table.concat(t,":"))
+	debug_msg("characters",table.concat(t,":"))
 end
 
 local categories = {}
 
 
 local function get_category(charcode)
-  local category = categories[charcode] or unidata[charcode].category
-  categories[charcode] = category
-  return category
+  local charcode = charcode or ""
+  if categories[charcode] then
+    return categories[charcode] 
+  else
+    local unidatacode = unidata[charcode] or {}
+    local category = unidatacode.category
+    categories[charcode] = category
+    return category
+  end
 end
 
 -- get glyph char and category
@@ -68,7 +84,7 @@ local function make_glyphs(head, nextn,s, lang, font, subtype)
     local t = {}
     local first = true
     for x in gmatch(s,".") do
-      print("multi znak",x)
+      debug_msg("multi letter",x)
         head, newn = node.insert_before(head, nextn, g(x))
     end
     return head
@@ -88,7 +104,7 @@ local function normalize_marks(head, n)
     info = get_mark(nextn)
   end
   local s = NFC(table.concat(text))
-  print("máme mark: " .. s)
+  debug_msg("We've got mark: " .. s)
   local new_n = node.new(37, subtype)
   new_n.lang = lang
   new_n.font = font
@@ -100,7 +116,7 @@ local function normalize_marks(head, n)
   for x in node.traverse_id(37,head) do
     t[#t+1] = char(x.char)
   end
-  print("tak co? ", table.concat(t,":"), table.concat(text,";"), char(byte(s)),length(s))
+  debug_msg("Variables ", table.concat(t,":"), table.concat(text,";"), char(byte(s)),length(s))
   return head, nextn
 end
 
@@ -131,17 +147,17 @@ function M.nodes(head)
   while n do
 		if n.id == 37 then
       local charcode = n.char
-			print(name(charcode))
-			print(get_category(charcode))
+			debug_msg("unicode name",name(charcode))
+			debug_msg("character category",get_category(charcode))
 			t[#t+1]= char(charcode)
 			text = true
       head, n = normalize_glyphs(head, n)
 		else
 			if text then
 				local s = table.concat(t)
-				print(s)
+				debug_msg("text chunk",s)
 				--printchars(NFC(s))
-				print("----------")
+				debug_msg("----------")
 			end
 			text = false
 			t = {}
