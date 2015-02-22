@@ -1,13 +1,28 @@
 \ProvidesPackage{uninormalize}
 \RequirePackage{luatexbase}
 \RequirePackage{luacode}
+\RequirePackage{kvoptions}
+\DeclareBoolOption[false]{nodes}
+\DeclareBoolOption[true]{buffer}
+\ProcessKeyvalOptions*
+\ifuninormalize@nodes
+  \luaexec{processnodes=true}
+\fi
+\ifuninormalize@buffer
+  \luaexec{processbuffer=true}
+\fi
 \begin{luacode*}
 local normalize = require "normalize"
-
-luatexbase.add_to_callback("pre_linebreak_filter",normalize.nodes, "normalize unicode")
-
-luatexbase.add_to_callback("hpack_filter",normalize.nodes, "normalize unicode")
-
+if processnodes==true then
+  print "[uninormalize] process nodes on"
+  luatexbase.add_to_callback("pre_linebreak_filter",normalize.nodes, "normalize unicode")
+  luatexbase.add_to_callback("hpack_filter",normalize.nodes, "normalize unicode")
+end
+if processbuffer== true then
+  print "[uninormalize] process buffer on"
+  luatexbase.add_to_callback("process_input_buffer", normalize.buffer," normalize unicode")
+end
 \end{luacode*}
+
 
 \endinput
