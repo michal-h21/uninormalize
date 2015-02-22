@@ -1,6 +1,8 @@
 # The `uninormalize` package
 
-The purpose of this package is to provide unicode normalization for LuaLaTeX.
+The purpose of this package is to provide unicode normalization for LuaLaTeX. It is based on  Arthur Reutenauer's 
+[code for GSOC 2008](https://code.google.com/p/google-summer-of-code-2008-tex/downloads/list), which was adapted a little bit to work with
+current `Luaotfload`. For more information, see [this question on TeX.sx](https://code.google.com/p/google-summer-of-code-2008-tex/downloads/list).
 
 ## Basic usage
 
