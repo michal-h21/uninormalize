@@ -4,12 +4,16 @@
 \RequirePackage{kvoptions}
 \DeclareBoolOption[false]{nodes}
 \DeclareBoolOption[true]{buffer}
+\DeclareBoolOption{debug}
 \ProcessKeyvalOptions*
 \ifuninormalize@nodes
   \luaexec{processnodes=true}
 \fi
 \ifuninormalize@buffer
   \luaexec{processbuffer=true}
+\fi
+\ifuninormalize@debug
+  \luaexec{uninormalize_debug = true}
 \fi
 \begin{luacode*}
 local normalize = require "normalize"
@@ -21,6 +25,9 @@ end
 if processbuffer== true then
   print "[uninormalize] process buffer on"
   luatexbase.add_to_callback("process_input_buffer", normalize.buffer," normalize unicode")
+end
+if uninormalize_debug then
+  normalize.debug = true
 end
 \end{luacode*}
 
