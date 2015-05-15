@@ -11,7 +11,7 @@ current `Luaotfload`. For more information, see [this question on TeX.sx](http:/
     \usepackage{fontspec}
     \usepackage[czech]{babel}
     \setmainfont{Linux Libertine O}
-    \usepackage[nodes,buffer=false, debug]{uninormalize}
+    \usepackage{uninormalize}
     \begin{document}
     
     Some tests:
