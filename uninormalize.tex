@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{latexmark}
+\ifx\HCode\undefined
+\usepackage{fontspec}
+\setmainfont{Linux Libertine O}
+\fi
+\usepackage{microtype,hyperref}
+ \usepackage{uninormalize}
+\begin{document}
+\title{The \texttt{latexmark} package}
+\author{Michal Hoftich}
+\maketitle
+ \markdownfile{README.md}
+
+\begin{latexmark}
+
+## Example results:
+
+
+ Some tests:
+
+- combined letter ᾳ %GREEK SMALL LETTER ALPHA (U+03B1) + COMBINING GREEK YPOGEGRAMMENI (U+0345)
+- normal letter ᾳ% GREEK SMALL LETTER ALPHA WITH YPOGEGRAMMENI (U+1FB3)
+
+Some more combined and normal letters: 
+óóōōöö
+
+Linux Libertine does support some combined chars: \parbox{4em}{příliš}
+\end{latexmark}
+\end{document}
+
