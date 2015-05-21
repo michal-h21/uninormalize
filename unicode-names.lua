@@ -1,7 +1,7 @@
 -- Unicode names
 
 -- if not characters then dofile('char-def-with-ccc.lua') end
-local unicharacters = require "char-def-normalize"
+local unicharacters = require "char-def-with-ccc"
 unicode = unicode or { }
 unicode.conformance = unicode.conformance or { }
 
