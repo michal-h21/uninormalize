@@ -1,7 +1,6 @@
 -- Unicode names
 
---  if not characters then dofile('char-def-with-ccc.lua') end
-if not characters then dofile('char-def.lua') end
+if not characters then dofile('char-def-with-ccc.lua') end
 
 unicode = unicode or { }
 unicode.conformance = unicode.conformance or { }
