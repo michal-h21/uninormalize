@@ -1,5 +1,5 @@
 -- We need an enhanced char-def.lua!
-local unicharacters = require "char-def-with-ccc"
+local unicharacters = require "char-def-normalize"
 if not unicode then require('unicode') end
 unicode.conformance = unicode.conformance or { }
 

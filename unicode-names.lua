@@ -1,11 +1,11 @@
 -- Unicode names
 
-if not characters then dofile('char-def-with-ccc.lua') end
-
+-- if not characters then dofile('char-def-with-ccc.lua') end
+local unicharacters = require "char-def-normalize"
 unicode = unicode or { }
 unicode.conformance = unicode.conformance or { }
 
-unidata = characters.data
+unidata = unicharacters.data
 
 if not math.div then -- from l-math.lua
   function math.div(n, m)
