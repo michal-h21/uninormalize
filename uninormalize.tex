@@ -1,13 +1,16 @@
 \documentclass{article}
+\usepackage{url}
 \ifx\HCode\undefined
 \usepackage{fontspec}
 \setmainfont{Linux Libertine O}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 \fi
 \usepackage{microtype,hyperref}
  \usepackage{uninormalize}
 \begin{document}
 \title{The \texttt{uninormalize} package}
-\author{Michal Hoftich}
+\author{Michal Hoftich\footnote{\url{michal.h21@gmail.com}} \and Arthur Reutenauer\footnote{\url{arthur.reutenauer@normalesup.org }}}
+\date{Version 0.1\\2/12/2015}
 \maketitle
 
 \input{readme.tex}
@@ -23,5 +26,7 @@ Some more combined and normal letters:
 óóōōöö
 
 Linux Libertine does support some combined chars: \parbox{4em}{příliš}
+
+
 \end{document}
 

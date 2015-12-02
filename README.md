@@ -16,8 +16,11 @@ current `Luaotfload`. For more information, see [this question on TeX.sx](http:/
     
     Some tests:
     \begin{itemize}
-      \item combined letter ᾳ %GREEK SMALL LETTER ALPHA (U+03B1) + COMBINING GREEK YPOGEGRAMMENI (U+0345)
-      \item normal letter ᾳ% GREEK SMALL LETTER ALPHA WITH YPOGEGRAMMENI (U+1FB3)
+      \item combined letter ᾳ %GREEK SMALL LETTER ALPHA (U+03B1) 
+                              % + COMBINING GREEK YPOGEGRAMMENI 
+                              % (U+0345)
+      \item normal letter ᾳ   % GREEK SMALL LETTER ALPHA WITH 
+                              %YPOGEGRAMMENI (U+1FB3)
     \end{itemize}
     
     Some more combined and normal letters: 
