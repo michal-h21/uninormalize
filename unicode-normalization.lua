@@ -1,5 +1,7 @@
 -- We need an enhanced char-def.lua!
-local unicharacters = require "char-def-with-ccc"
+if not unicharacters then 
+  unicharacters = require "char-def-with-ccc"
+end
 if not unicode then require('unicode') end
 unicode.conformance = unicode.conformance or { }
 
@@ -7,7 +9,7 @@ uni = unicode.utf8
 unidata = unicharacters.data
 
 function printf(s, ...) print(string.format(s, ...)) end
-function debug(s, ...) io.write("DEBUG: ", string.format(s, ...), "\n") end
+-- function debug(s, ...) io.write("DEBUG: ", string.format(s, ...), "\n") end
 function warn(s, ...) io.write("Warning: ", string.format(s, ...), "\n") end
 
 function md5sum(any) return md5.hex(md5.sum(any)) end

@@ -6,7 +6,7 @@ local char = unicode.utf8.char
 local gmatch = unicode.utf8.gmatch
 local name = unicode.conformance.name
 local byte = unicode.utf8.byte
-local unidata = characters.data
+-- local unidata = unicharacters.data
 local length = unicode.utf8.len
 
 M.debug = false
@@ -15,7 +15,7 @@ M.debug = false
 local function debug_msg(a,b,c,d,e,f,g,h,i)
   if M.debug then
     local t = {a,b,c,d,e,f,g,h,i}
-    print("[uninormalize]", unpack(t))
+    print("[uninormalize]", table.unpack(t))
   end
 end
 
