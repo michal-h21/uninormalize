@@ -20,12 +20,12 @@ unicharacters.context = unicharacters.context or { }
 local charu = unicode.utf8.char
 
 function unicharacters.context.rehash2()
-  for k, udata in pairs(unidata) -- *not* ipairs :-)
+  for ucode, udata in pairs(unidata) -- *not* ipairs :-)
   do
     local sp = udata.specials
     if sp then
       if sp[1] == 'char' then
-        local ucode = udata.unicodeslot
+        -- local ucode = udata.unicodeslot
         local entry = { combinee = sp[2], combining = sp[3], combined = ucode }
         if not unicharacters.combinee[sp[2]]
         then unicharacters.combinee[sp[2]] = { } end
