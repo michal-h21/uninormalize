@@ -9,6 +9,8 @@ local byte = unicode.utf8.byte
 -- local unidata = unicharacters.data
 local length = unicode.utf8.len
 
+local glyph_id = node.id "glyph"
+
 M.debug = false
 
 -- for some reason variable number of arguments doesn't work
@@ -61,7 +63,7 @@ local function glyph_info(n)
 end
 
 local function get_mark(n)
-  if n.id == 37 then
+  if n.id == glyph_id then
     local character, cat = glyph_info(n)
     if mark_categories[cat] then
       return char(character)
@@ -72,7 +74,7 @@ end
 
 local function make_glyphs(head, nextn,s, lang, font, subtype) 
   local g = function(a) 
-    local new_n = node.new(37, subtype)
+    local new_n = node.new(glyph_id, subtype)
     new_n.lang = lang
     new_n.font = font
     new_n.char = byte(a)
@@ -105,7 +107,7 @@ local function normalize_marks(head, n)
   end
   local s = NFC(table.concat(text))
   debug_msg("We've got mark: " .. s)
-  local new_n = node.new(37, subtype)
+  local new_n = node.new(glyph_id, subtype)
   new_n.lang = lang
   new_n.font = font
   new_n.char = byte(s)
@@ -113,7 +115,7 @@ local function normalize_marks(head, n)
   -- head, new_n = node.insert_before(head, nextn, make_glyphs(s, lang, font, subtype))
   head, new_n = make_glyphs(head, nextn, s, lang, font, subtype)
   local t = {}
-  for x in node.traverse_id(37,head) do
+  for x in node.traverse_id(glyph_id,head) do
     t[#t+1] = char(x.char)
   end
   debug_msg("Variables ", table.concat(t,":"), table.concat(text,";"), char(byte(s)),length(s))
@@ -126,7 +128,7 @@ local function normalize_glyphs(head, n)
   local charcode, category = glyph_info(n)
   if letter_categories[category] then 
     local nextn = n.next
-    if nextn.id == 37 then
+    if nextn.id == glyph_id then
       --local nextchar = nextn.char
       --local nextcat = get_category(nextchar)
       local nextchar, nextcat = glyph_info(nextn)
@@ -145,7 +147,7 @@ function M.nodes(head)
   local n = head
 	-- for n in node.traverse(head) do
   while n do
-		if n.id == 37 then
+		if n.id == glyph_id then
       local charcode = n.char
 			debug_msg("unicode name",name(charcode))
 			debug_msg("character category",get_category(charcode))
