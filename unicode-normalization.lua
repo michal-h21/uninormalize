@@ -1,12 +1,14 @@
--- We need an enhanced char-def.lua!
-if not unicharacters then 
-  unicharacters = require "char-def-with-ccc"
+-- char-def now contains all necessary fields, no need for a custom file
+if not characters then
+  require "char-def"
 end
+
 if not unicode then require('unicode') end
 unicode.conformance = unicode.conformance or { }
 
+unicharacters = unicharacters or {}
 uni = unicode.utf8
-unidata = unicharacters.data
+unidata = characters.data
 
 function printf(s, ...) print(string.format(s, ...)) end
 -- function debug(s, ...) io.write("DEBUG: ", string.format(s, ...), "\n") end
@@ -33,8 +35,12 @@ function unicharacters.context.rehash2()
         unicharacters.combinee[sp[2]][n+1] = entry
       end
     end
+    -- copy context's combining field to combclass field
+    -- this field was in the custom copy of the char-def.lua that we no longer use
+    udata.combclass = udata.combining
   end
 end
+
 
 unicharacters.context.rehash2()
 combdata = unicharacters.combinee

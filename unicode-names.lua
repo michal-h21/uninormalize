@@ -1,13 +1,13 @@
 -- Unicode names
 
-if not unicharacters then 
-  unicharacters = require "char-def-with-ccc"
+if not characters then
+  require "char-def"
 end
 
 unicode = unicode or { }
 unicode.conformance = unicode.conformance or { }
 
-unidata = unicharacters.data
+unidata = characters.data
 
 if not math.div then -- from l-math.lua
   function math.div(n, m)
