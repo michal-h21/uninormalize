@@ -2,11 +2,12 @@
 \usepackage{url}
 \ifx\HCode\undefined
 \usepackage{fontspec}
-\setmainfont{Linux Libertine O}
+\setmainfont{Linux Libertine O}[Renderer = Harfbuzz]
 \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 \fi
 \usepackage{microtype,hyperref}
 \usepackage[nodes]{uninormalize}
+\usepackage{markdown}
 \def\tightlist{}
 \begin{document}
 \title{The \texttt{uninormalize} package}
@@ -14,7 +15,7 @@
 \date{Version 0.1\\2/12/2015}
 \maketitle
 
-\input{readme.tex}
+\markdownInput{README.md}
 
 \subsection{Example results}
 
