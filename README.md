@@ -27,12 +27,21 @@ current `Luaotfload`. For more information, see [this question on TeX.sx](http:/
     óóōōöö
     
     Linux Libertine does support some combined chars: \parbox{4em}{příliš}
+
+    Using the \verb|^^^^| syntax: ^^^^0061^^^^0301 ^^^^0041^^^^0301
     \end{document}
 
-This package does have three options:
+## Package options
+
+This package has three options:
 
 
-- buffer - normalize processed document when it is read from disk. This is the default option and seems to work better than the other one.
-- nodes - normalize LuaTeX nodes. This unfortunatelly doesn't work well, because sometimes the input characters are changed before this stage, 
-  probably by font processing. 
-- debug - print debug messages to the terminal output
+- **buffer**  -- normalize processed document at the moment when it's
+  source file is read, before processing by \TeX\ starts. This is the default
+  option, it seems to work better than the next one.
+- **nodes** -- normalize LuaTeX nodes. Normalization happens after the full processiny by \TeX. 
+- **debug** -- print debug messages to the terminal output
+
+Both **buffer** and **nodes** options are enabled by default, you can disable any of them by using:
+
+    \usepackage[nodes=false,buffer=false]{uninormalize}
