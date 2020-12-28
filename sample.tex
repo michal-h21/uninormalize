@@ -2,7 +2,7 @@
 \usepackage{fontspec}
 \usepackage[czech]{babel}
 \setmainfont{Linux Libertine O}
-\usepackage[nodes,buffer=false, debug]{uninormalize}
+\usepackage[nodes,buffer, debug]{uninormalize}
 \begin{document}
 
 Some tests:
@@ -15,4 +15,6 @@ Some more combined and normal letters:
 óóōōöö
 
 Linux Libertine does support some combined chars: \parbox{4em}{příliš}
+
+^^^^0061^^^^0301 ^^^^0041^^^^0301
 \end{document}
