@@ -1,3 +1,4 @@
+-- Note: This file is deprecated. The original char-def.lua now contains all necessary info
 -- Modified from ConTeXt's char-def.lua by adding combclass (changed version number).
 -- A. Reutenauer, 2008
 
