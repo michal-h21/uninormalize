@@ -128,7 +128,7 @@ local function normalize_glyphs(head, n)
   local charcode, category = glyph_info(n)
   if letter_categories[category] then 
     local nextn = n.next
-    if nextn.id == glyph_id then
+    if nextn and nextn.id == glyph_id then
       --local nextchar = nextn.char
       --local nextcat = get_category(nextchar)
       local nextchar, nextcat = glyph_info(nextn)
