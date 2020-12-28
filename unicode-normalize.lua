@@ -1,6 +1,6 @@
 local M = {}
-require("unicode-names.lua")
-require('unicode-normalization.lua')
+require("unicode-normalize-names")
+require('unicode-normalization')
 local NFC = unicode.conformance.toNFC
 local char = unicode.utf8.char
 local gmatch = unicode.utf8.gmatch
